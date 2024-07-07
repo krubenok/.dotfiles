@@ -1,0 +1,44 @@
+[user]
+	name = Kyle Rubenok
+	email = kyle@rubenok.ca
+# when working with Work
+[includeIf "gitdir:**/Work/**/.git"]
+    path = ~/.dotfiles/git/gitconfig-microsoft
+[user]
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII0WV9BlgLaWEjoiVjdDHuSBK7rWeojCNVK3kgFTr3BS
+[github]
+	user = krubenok
+[color]
+	ui = auto
+[commit]
+	# Show the diff as a comment in the commit message template.
+	verbose = true
+	# Sign commits with GPG
+	gpgsign = true
+[core]
+	# Exclude everything this file. Used for general exclusions.
+	excludesfile = $DOTFILES/git/.global-gitignore
+	# Don't prompt for commit messages for merge commits.
+	mergeoptions = --no-edit
+	commitGraph = true
+[tag]
+	gpgSign = true
+	forceSignAnnotated = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+[commit]
+    gpgsign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[diff]
+	# Use the slower but better patience diff algorithm
+	algorithm = patience
+	# Use new diff algorithm to make e.g. function diffs look better.
+	compactionheuristic = true
+[push]
+	default = simple
