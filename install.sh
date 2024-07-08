@@ -5,6 +5,7 @@
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo "Oh My Zsh not detected... installing"
     /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
+    echo "Oh My Zsh isntalled... continuing"
 else
     echo "Oh My Zsh is already installed... skipping"
 fi
@@ -18,13 +19,14 @@ if [[ "$OSTYPE" == "darwin"* || "$OSTYPE" == "linux-gnu"* ]]; then
     if test ! $(which brew); then
         echo "brew not detected... installing"
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        echo "brew isntalled... continuing"
     else
         echo "brew is already installed... skipping"
     fi
     echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>$HOME/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
-    # echo "Running brew update"
+    echo "Running brew update & installing bundles..."
     brew update
 
     # Install all our dependencies with bundle (See Brewfile)
@@ -34,6 +36,7 @@ if [[ "$OSTYPE" == "darwin"* || "$OSTYPE" == "linux-gnu"* ]]; then
 fi
 
 # Setup Git and Repos Folders
+echo "Setting up Git and Repos folders..."
 rm -rf $HOME/.gitconfig
 ln -sw $HOME/.dotfiles/git/gitconfig $HOME/.gitconfig
 mkdir -p $HOME/Developer/Personal
